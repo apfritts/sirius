@@ -8,7 +8,6 @@ LINK_FLAGS = -lopencv_core \
 			 -lopencv_objdetect \
 			 -lopencv_features2d \
 			 -lopencv_gpu \
-			 -lrt \
 			 -lboost_program_options \
 			 -lboost_filesystem \
 			 -lboost_system \

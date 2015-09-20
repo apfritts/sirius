@@ -14,12 +14,6 @@ hash ant 2>/dev/null || {
   exit 1
 }
 
-# Detect OS X
-TAR_BIN=tar
-if [[ `uname` == 'Darwin' ]]; then
-	TAR_BIN=gtar
-fi
-
 # thread for parallel build
 [[ -n "$THREADS" ]] || THREADS=4
 
@@ -60,13 +54,13 @@ echo "C++ Pocketsphinx server done."
 cd $asr_kaldi
 # Untar the src and tools tarball
 if [ ! -d tools ]; then
-  $TAR_BIN -xzf tools.tar.gz
+  tar -xzf tools.tar.gz
   cd ./tools/
   make -j $THREADS ;
   cd ..
 fi
 
-#$TAR_BIN -xzf src.tar.gz --overwrite
+tar -xzf src.tar.gz --overwrite
 cd ./src/
 ./configure ;
 make -j $THREADS ;
@@ -80,7 +74,7 @@ echo "Kaldi server done."
 # OpenEphyra
 ################
 if [ ! -d question-answer ]; then
-  $TAR_BIN -xzf question-answer.tar.gz
+  tar -xzf question-answer.tar.gz
 fi
 cd $qa;
 ant ;#> /dev/null
